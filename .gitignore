@@ -1,0 +1,12 @@
+#client dir
+.vscode/
+node_modules/
+
+#server dir
+.vs/
+[Bb]in/
+[Oo]bj/
+packages/
+
+*.csproj.user
+*.json.defaults
