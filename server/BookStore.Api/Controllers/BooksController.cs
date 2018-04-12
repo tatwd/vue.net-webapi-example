@@ -42,5 +42,19 @@ namespace BookStore.Api.Controllers
 
             return response;
         }
+
+        [HttpPut]
+        [Route("api/books/{id}")]
+        public string Put(int id)
+        {
+            return $"put {id}";
+        }
+
+        [HttpDelete]
+        [Route("api/books/{id}")]
+        public string Delete(int id)
+        {
+            return $"delete {id}";
+        }
     }
 }
