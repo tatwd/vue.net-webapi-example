@@ -7,6 +7,7 @@ using System.Web.Http;
 
 using BookStore.Model;
 using BookStore.Bll;
+using Newtonsoft.Json;
 
 namespace BookStore.Api.Controllers
 {
@@ -22,15 +23,24 @@ namespace BookStore.Api.Controllers
 
         // GET: api/book/{id}
         [HttpGet]
-        public Books Get([FromUri] int id)
+        [Route("api/books/{id}")]
+        public HttpResponseMessage Get(int id)
         {
-            return new Books
-            {
-                BookId = id,
-                Authors = "test author",
-                Title = "test title",
-                Price = 12.45m
-            };
+            var book = new BooksService()
+                .GetModel(x => x.BookId == id)
+                .SingleOrDefault();
+
+            HttpResponseMessage response = new HttpResponseMessage();
+
+            // config response content
+            response.Content = 
+                new StringContent(JsonConvert.SerializeObject(book));
+            
+            // config response content type
+            response.Content.Headers.ContentType = 
+                new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+            return response;
         }
     }
 }

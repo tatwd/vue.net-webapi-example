@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BookStore.Dal;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using BookStore.Model;
-using BookStore.Dal;
+using System.Linq.Expressions;
 
 namespace BookStore.Bll
 {
@@ -13,6 +9,7 @@ namespace BookStore.Bll
     {
         bool Add(T t);
         IQueryable<T> GetAll();
+        IQueryable<T> GetModel(Expression<Func<T, bool>> whereLambda);
     }
 
     public abstract class BaseService<T> where T : class, new()
@@ -27,6 +24,11 @@ namespace BookStore.Bll
         public IQueryable<T> GetAll()
         {
             return baseDbContext.GetAll();
+        }
+
+        public IQueryable<T> GetModel(Expression<Func<T, bool>> whereLambda)
+        {
+            return baseDbContext.GetModel(whereLambda);
         }
     }
 }

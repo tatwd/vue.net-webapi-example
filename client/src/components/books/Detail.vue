@@ -32,6 +32,9 @@ export default {
       vm.$store.state.services.booksService
         .getById(to.params.id)
         .then(res => {
+          if (!res.data)
+            return
+
           vm.book.BookId = res.data.BookId
           vm.book.Title = res.data.Title
           vm.book.Authors = res.data.Authors
@@ -51,6 +54,10 @@ export default {
         .getById(self.$route.params.id)
         .then(res => {
           let _book = self.book
+
+          if (!_book)
+            return
+
           _book.BookId = res.data.BookId
           _book.Title = res.data.Title
           _book.Authors = res.data.Authors
