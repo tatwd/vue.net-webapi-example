@@ -6,7 +6,10 @@
       </li>
       <li class="collection-item">Authors: {{ book.Authors }}</li>
       <li class="collection-item">Price: ￥{{ book.Price }}</li>
-      <li class="collection-item">BookCoverUrl: {{ book.BookCoverUrl }}</li>
+      <!-- <li class="collection-item">BookCoverUrl: {{ book.BookCoverUrl }}</li> -->
+      <li class="collection-item">
+        <img class="responsive-img book-img" :src="'http://localhost:56364/' + book.BookCoverUrl" alt="test img">
+      </li>
     </ul>
     <router-link to="/books" class="btn grey">Back</router-link>
     <button @click="addToCart" class="btn blue">Add To Cart</button>
@@ -14,6 +17,8 @@
 </template>
 
 <script>
+// import img from '@/assets/logo.png'
+
 export default {
   name: 'book-detail',
   data () {
@@ -24,7 +29,8 @@ export default {
         Authors: null,
         Price: null,
         BookCoverUrl: null
-      }
+      },
+      // imgurl: 'http://localhost:56364/'
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -40,6 +46,8 @@ export default {
           vm.book.Authors = res.data.Authors
           vm.book.Price = res.data.Price
           vm.book.BookCoverUrl = res.data.BookCoverUrl
+
+          // vm.imgurl += res.data.BookCoverUrl
         })
         .catch(err => console.log(err))
     })
@@ -63,6 +71,8 @@ export default {
           _book.Authors = res.data.Authors
           _book.Price = res.data.Price
           _book.BookCoverUrl = res.data.BookCoverUrl
+
+          // self.imgurl += res.data.BookCoverUrl
         })
         .catch(err => console.log(err))
     },
@@ -75,6 +85,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.book-img {
+  height: 250px;
+}
 </style>
