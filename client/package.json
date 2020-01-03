@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^7.1.1",
@@ -49,7 +49,7 @@
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-server": "^2.9.1",
+    "webpack-dev-server": "^2.11.5",
     "webpack-merge": "^4.1.0"
   },
   "engines": {
